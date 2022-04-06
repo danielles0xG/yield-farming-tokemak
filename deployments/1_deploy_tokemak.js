@@ -1,23 +1,31 @@
-// We require the Hardhat Runtime Environment explicitly here. This is optional
-// but useful for running the script in a standalone fashion through `node <script>`.
-//
-// When running the script with `npx hardhat run <script>` you'll find the Hardhat
-// Runtime Environment's members available in the global scope.
 const hre = require("hardhat");
+const {
+  TOKE_ETH_UNIV2_PAIR,
+  TOKE_ASSET,
+  WETH_ASSET,
+  TOKEMAK_REWARDS_CONTRACT,
+  TOKEMAK_MANAGER_CONTRACT,
+  TOKEMAK_UNIV2_LP_TOKEN_POOL,
+  UNIV2_ROUTER,
+} = require("../deployments/helpers/address_lookup.js");
 
 async function main() {
-  // Hardhat always runs the compile task when running scripts with its command
-  // line interface.
-  //
-  // If this script is run directly using `node` you may want to call compile
-  // manually to make sure everything is compiled
-  // await hre.run('compile');
+  const netId = await hre.network.name;
 
-  // We get the contract to deploy
+  // Get Artifact
   const Strategy = await hre.ethers.getContractFactory("TokemakUniLPStrategy");
-  const strategy = await Strategy.deploy();
 
-  await strategy.deployed();
+  // Deploy Contract
+  const strategy = await Strategy.deploy();
+  await strategy.initialize(
+    TOKE_ETH_UNIV2_PAIR[netId],
+    TOKE_ASSET[netId],
+    WETH_ASSET[netId],
+    TOKEMAK_REWARDS_CONTRACT[netId],
+    TOKEMAK_MANAGER_CONTRACT[netId],
+    TOKEMAK_UNIV2_LP_TOKEN_POOL[netId],
+    UNIV2_ROUTER[netId]
+  );
 
   console.log("strategy deployed to:", strategy.address);
 }

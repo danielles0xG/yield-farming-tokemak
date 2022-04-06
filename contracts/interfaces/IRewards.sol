@@ -2,6 +2,7 @@
 
 pragma solidity 0.8.4;
 pragma experimental ABIEncoderV2;
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 interface IRewards {
     // function claimedAmounts(address _account) external returns (uint256);
@@ -21,6 +22,7 @@ interface IRewards {
     }
 
     function rewardsSigner() external returns (address _rewardsSigner);
+    function tokeToken() external returns (IERC20);
 
     function getClaimableAmount(Recipient calldata recipient)
         external

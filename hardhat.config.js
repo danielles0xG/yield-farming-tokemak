@@ -4,6 +4,11 @@ require("@nomiclabs/hardhat-etherscan");
 require("@nomiclabs/hardhat-waffle");
 require("@nomiclabs/hardhat-ethers");
 require("@openzeppelin/hardhat-upgrades");
+require("solidity-coverage");
+
+const CHAIN_IDS = {
+  hardhat: 31337, // chain ID for hardhat testing
+};
 
 /**
  * @type import('hardhat/config').HardhatUserConfig
@@ -34,14 +39,19 @@ module.exports = {
   networks: {
     localhost: { url: "http://127.0.0.1:8545" },
     "mainnet-fork": {
-      url:  "http://127.0.0.1:8545",
+      url: "http://127.0.0.1:8545",
       accounts:
         process.env.TEST_ETH_ACCOUNT_PRIVATE_KEY !== undefined
           ? [process.env.TEST_ETH_ACCOUNT_PRIVATE_KEY]
-          : []
-    },
+          : [],
+    },  
     hardhat: {
-      initialBaseFeePerGas: 0, // workaround from https://github.com/sc-forks/solidity-coverage/issues/652#issuecomment-896330136 . Remove when that issue is closed.
+      chainId: CHAIN_IDS.hardhat,
+      forking: {
+        // Using Alchemy
+        url: `https://eth-mainnet.alchemyapi.io/v2/OlIDDqLH9Uo3AUQ_0ezj6sfqHIGxJRxw`, // url to RPC node, ${ALCHEMY_KEY} - must be your API key
+
+      },
     },
   },
   gasReporter: {
@@ -51,4 +61,5 @@ module.exports = {
   etherscan: {
     apiKey: process.env.ETHERSCAN_API_KEY,
   },
+  plugins: ["solidity-coverage"],
 };

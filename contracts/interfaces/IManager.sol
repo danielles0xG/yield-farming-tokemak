@@ -8,7 +8,6 @@ pragma solidity 0.8.4;
  *  and back. Can also move assets to the treasury when appropriate.
  */
 interface IManager {
-
     ///@notice Gets addresses of all pools registered
     ///@return Memory array of pool addresses
     function getPools() external view returns (address[] memory);
@@ -32,7 +31,10 @@ interface IManager {
     ///@notice Gets reward hash by cycle index
     ///@param index Cycle index to retrieve rewards hash
     ///@return String memory hash
-    function cycleRewardsHashes(uint256 index) external view returns (string memory);
+    function cycleRewardsHashes(uint256 index)
+        external
+        view
+        returns (string memory);
 
     ///@notice Gets current starting block
     ///@return uint256 with block number
