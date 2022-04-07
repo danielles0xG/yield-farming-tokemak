@@ -22,6 +22,7 @@ interface IRewards {
     }
 
     function rewardsSigner() external returns (address _rewardsSigner);
+
     function tokeToken() external returns (IERC20);
 
     function getClaimableAmount(Recipient calldata recipient)

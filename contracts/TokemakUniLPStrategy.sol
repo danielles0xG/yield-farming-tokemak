@@ -5,25 +5,23 @@ import "hardhat/console.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import "@uniswap/v2-core/contracts/interfaces/IUniswapV2Pair.sol";
 import "@uniswap/v2-periphery/contracts/interfaces/IUniswapV2Router02.sol";
+import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@uniswap/lib/contracts/libraries/Babylonian.sol";
 import "./interfaces/IRewards.sol";
 import "./interfaces/IManager.sol";
 import "./interfaces/ILiquidityPool.sol";
 import "./utils/UniswapV2Library.sol";
 
-
 // @title Tokemak's UNI LP auto-compound strategy
 // @author Daniel G.
 // @notice Basic implementation of harvesting LP token rewards from Tokemak protocol
 // @dev Solidity coding challengue for Ondo Finance interview
 // @custz is an experimental contract.
-contract TokemakUniLPStrategy is
-    IRewards
-{
+contract TokemakUniLPStrategy is OwnableUpgradeable, IRewards {
     using SafeERC20 for IERC20;
 
     // @dev Staking Assets
-    IUniswapV2Pair public uniV2LpTokens;
+    IUniswapV2Pair public uniV2LpTokensPairs;
     IERC20 public tokematAsset;
     IERC20 public wethAsset;
 
@@ -37,7 +35,6 @@ contract TokemakUniLPStrategy is
 
     // @notice variables to keep track of stake amounts
     uint256 public stakes;
-    address public owner;
 
     // @dev Auto-compound events to store datapoints on chain
     event Deposit(address _investor, uint256 _amount);
@@ -45,10 +42,6 @@ contract TokemakUniLPStrategy is
     event Withdraw(address _investor, uint256 _amount);
     event RequestWithdraw(address _investor, uint256 _amount);
 
-    modifier onlyOwner(){
-        require(msg.sender == owner, "Only onwer.");
-        _;
-    }
     // @notice Init strategy Tokemak's dependencies
     // @dev Returns Tokemaks contract instances for staking interactions
     // @param _wethAddress Wrapped Eth address
@@ -56,21 +49,23 @@ contract TokemakUniLPStrategy is
     // @param _tokemakManagerContractAddress Tokemak's main manager controller address
     // @param _tokemakUniLpPoolAddress Tokemak's uniswap LP pool address
     // @param _uniswapV2Router02Address Un
-    constructor (
+    function initialize(
         address _tokemakUniLpPoolAddress,
         address _tokemakRwrdContractAddress,
         address _tokemakManagerContractAddress,
         address _uniswapV2Router02Address,
-        address _wethAddress
-    ){
-        owner = msg.sender;
+        address _wethAddress,
+        address _tokeAddress,
+        address _uniV2LpTokensPairsAddress
+    ) public initializer {
+        __Ownable_init();
         tokemakUniLpPool = ILiquidityPool(_tokemakUniLpPoolAddress);
         tokemakRwrdContract = IRewards(_tokemakRwrdContractAddress);
         tokemakManagerContract = IManager(_tokemakManagerContractAddress);
         uniswapV2Router02 = IUniswapV2Router02(_uniswapV2Router02Address);
-        tokematAsset = IERC20(address(tokemakRwrdContract.tokeToken()));
-        uniV2LpTokens = IUniswapV2Pair(address(tokemakUniLpPool.underlyer()));
         wethAsset = IERC20(_wethAddress);
+        tokematAsset = IERC20(_tokeAddress);
+        uniV2LpTokensPairs = IUniswapV2Pair(_uniV2LpTokensPairsAddress);
     }
 
     // @notice Deposits Uni LP tokens into contract callable by only owner
@@ -79,14 +74,14 @@ contract TokemakUniLPStrategy is
     // @param _amount Amount of UNI LP token to deposit
     function deposits(uint256 _amount) public onlyOwner {
         require(_amount > 0, "TUniLPS 03: Invalid deposit amount");
-        
+
         // @dev Trasnfer UniLP token to this contract
-        uniV2LpTokens.transferFrom(msg.sender,address(this), _amount);
+        uniV2LpTokensPairs.transferFrom(_msgSender(), address(this), _amount);
 
-        if (uniV2LpTokens.balanceOf(address(this)) >= _amount) {
-                    console.log("esposits if 2");
+        if (uniV2LpTokensPairs.balanceOf(address(this)) >= _amount) {
+            console.log("esposits if 2");
 
-            emit Deposit(msg.sender, _amount);
+            emit Deposit(_msgSender(), _amount);
             stakes = _amount;
         } else {
             revert("TUniLPS 04: Deposit failed.");
@@ -94,13 +89,13 @@ contract TokemakUniLPStrategy is
 
         // @dev stakes all deposits
         _stake(stakes);
-        emit Stake(msg.sender, _amount);
+        emit Stake(_msgSender(), _amount);
     }
 
     // @notice Stakes all its deposits in Tokemak's UNI LP token pool
     // @param _amount Amount of UNI LP tokens to stake
     function _stake(uint256 _amount) internal {
-        uniV2LpTokens.approve(address(tokemakUniLpPool), _amount);
+        uniV2LpTokensPairs.approve(address(tokemakUniLpPool), _amount);
         tokemakUniLpPool.deposit(_amount);
     }
 
@@ -149,7 +144,6 @@ contract TokemakUniLPStrategy is
         bytes32 r,
         bytes32 s
     ) external {
-
         // @dev 1.- Check for positive amount of toke rewards in current cycle
         uint256 claimableRwrds = this.getClaimableAmount(recipient);
         uint256 tokemakBalance;
@@ -278,24 +272,30 @@ contract TokemakUniLPStrategy is
     // @notice Request anticipated withdrawal to Tokemak's Uni LP pool
     // @dev Request will be served on next cycle (currently 7 days)
     function requestWithdrawal(uint256 _amount) public onlyOwner {
-        require(_amount <= stakes, " TUniLPS 06: insufficient funds to withdraw.");
+        require(
+            _amount <= stakes,
+            " TUniLPS 06: insufficient funds to withdraw."
+        );
         tokemakUniLpPool.requestWithdrawal(_amount);
-        emit RequestWithdraw(msg.sender, _amount);
+        emit RequestWithdraw(_msgSender(), _amount);
     }
 
     // @notice Withdrawal Tokemak's Uni LP tokens
     function withdraw(uint256 _amount) public onlyOwner {
         (uint256 minCycle, ) = tokemakUniLpPool.requestedWithdrawals(
-            msg.sender
+            _msgSender()
         );
         require(
             minCycle > tokemakManagerContract.getCurrentCycleIndex(),
             "TUniLPS 07: Withdrawal not yet available."
         );
-        require(_amount <= stakes, "TUniLPS 08: insufficient funds to withdraw.");
-        tokemakUniLpPool.withdraw(_amount);
+        require(
+            _amount <= stakes,
+            "TUniLPS 08: insufficient funds to withdraw."
+        );
         stakes -= _amount;
-        emit Withdraw(msg.sender, _amount);
+        tokemakUniLpPool.withdraw(_amount);
+        emit Withdraw(_msgSender(), _amount);
     }
 
     // @notice Returns chain Id
@@ -307,8 +307,8 @@ contract TokemakUniLPStrategy is
         }
         return id;
     }
-        function tokeToken() public override returns (IERC20){
-            return tokemakRwrdContract.tokeToken();
-        }
 
+    function tokeToken() public override returns (IERC20) {
+        return tokemakRwrdContract.tokeToken();
+    }
 }

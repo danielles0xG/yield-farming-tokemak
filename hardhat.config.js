@@ -44,13 +44,13 @@ module.exports = {
         process.env.TEST_ETH_ACCOUNT_PRIVATE_KEY !== undefined
           ? [process.env.TEST_ETH_ACCOUNT_PRIVATE_KEY]
           : [],
-    },  
+    },
     hardhat: {
       chainId: CHAIN_IDS.hardhat,
       forking: {
         // Using Alchemy
-        url: `https://eth-mainnet.alchemyapi.io/v2/OlIDDqLH9Uo3AUQ_0ezj6sfqHIGxJRxw`, // url to RPC node, ${ALCHEMY_KEY} - must be your API key
-
+        url: `https://eth-mainnet.alchemyapi.io/v2/OlIDDqLH9Uo3AUQ_0ezj6sfqHIGxJRxw`, 
+        blockNumber: 12973188 // since pool deployment
       },
     },
   },

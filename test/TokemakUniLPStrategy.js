@@ -1,8 +1,9 @@
+require("dotenv").config();
 const { expect } = require("chai");
-const { ethers, utils} = require("hardhat");
+const { ethers, utils } = require("hardhat");
 const BigNumber = require("bignumber.js");
 
-const {sign2612} = require('./helpers/signatures');
+const { sign } = require("./helpers/signatures");
 
 function toBN(number) {
   return new BigNumber(number);
@@ -29,72 +30,99 @@ const investmentAmount = toBN("13170000000000000").toString();
  * Testing over mainnet fork since Tokemak's contracts
  * seem to be no available on testnets
  */
-before(async function(){
-   [owner, addr1, addr2] = await ethers.getSigners();
-   const buffer = Buffer.from(user1PrivateKey, 'hex');
 
-   let currentCycle = await strategy.tokemakManagerContract();
-   currentCycle = await currentCycle.getCurrentCycleIndex();
-
-   let verifier = await strategy.tokemakRwrdContract();
-   verifier = await verifier.rewardsSigner();
-
-   const contractData = {
-     name: 'Ondo Fi', 
-     verifyingContract: verifier
-   };
-
-   const recipient = {
-     chainId:1,
-     cycle: currentCycle,
-     wallet: strategy.address,
-     amount: investmentAmount
-   }
-   const {v, r, s} = sign2612(contractData, recipient, buffer);
-   signature = {
-     recipient,v,r,s
-   }
-});
-
-
-
-beforeEach(async function () {   
-  const StrategyInstance = await ethers.getContractFactory("TokemakUniLPStrategyMock");
-   uniLpToken = await hre.ethers.getContractAt("UniswapV2Pair", TOKE_ETH_UNIV2_PAIR[netId]);
+before(async function () {
+  const StrategyInstance = await ethers.getContractFactory(
+    "TokemakUniLPStrategy"
+  );
+  uniLpToken = await hre.ethers.getContractAt(
+    "UniswapV2Pair",
+    TOKE_ETH_UNIV2_PAIR[netId]
+  );
 
   strategy = await StrategyInstance.deploy();
   await strategy.initialize(
-    TOKE_ETH_UNIV2_PAIR[netId],
-    TOKE_ASSET[netId],
-    WETH_ASSET[netId],
+    TOKEMAK_UNIV2_LP_TOKEN_POOL[netId],
     TOKEMAK_REWARDS_CONTRACT[netId],
     TOKEMAK_MANAGER_CONTRACT[netId],
-    TOKEMAK_UNIV2_LP_TOKEN_POOL[netId],
-    UNIV2_ROUTER[netId]
+    UNIV2_ROUTER[netId],
+    WETH_ASSET[netId],
+    TOKE_ASSET[netId],
+    TOKE_ETH_UNIV2_PAIR[netId]
   );
+});
+
+/**
+ *  Sign claiming request for toke rewards
+ */
+before(async function () {
+  [owner, addr1, addr2] = await ethers.getSigners();
+  const buffer = Buffer.from(process.env.TEST_ETH_ACCOUNT_PRIVATE_KEY, "hex");
+
+  const manager = await hre.ethers.getContractAt(
+    "IManager",
+    TOKEMAK_MANAGER_CONTRACT[netId]
+  );
+  const currentCycle = await manager.getCurrentCycleIndex();
+
+  const rewards = await hre.ethers.getContractAt(
+    "IRewards",
+    TOKEMAK_REWARDS_CONTRACT[netId]
+  );
+  const verifier = await rewards.rewardsSigner();
+
+  const contractData = {
+    name: "Ondo Fi",
+    verifyingContract: verifier,
+  };
+
+  const recipient = {
+    chainId: 1,
+    cycle: currentCycle,
+    wallet: strategy.address,
+    amount: investmentAmount,
+  };
+  const { v, r, s } = sign(contractData, recipient, buffer);
+  signature = {
+    recipient,
+    v,
+    r,
+    s,
+  };
 });
 
 describe("Test initial deposits & stake", function () {
   it("Should deposit into Strategy", async function () {
-    const uniLpToken = await hre.ethers.getContractAt("IUniswapV2PairMock", TOKE_ETH_UNIV2_PAIR[netId]);
-    await uniLpToken.approve(strategy.address, investmentAmount); 
-    await strategy.functions.deposits(TOKE_ETH_UNIV2_PAIR[netId], investmentAmount);
+    const uniLpToken = await hre.ethers.getContractAt(
+      "IUniswapV2Pair",
+      TOKE_ETH_UNIV2_PAIR[netId]
+    );
+    await uniLpToken.approve(strategy.address, investmentAmount);
+    await strategy.functions.deposits(
+      TOKE_ETH_UNIV2_PAIR[netId],
+      investmentAmount
+    );
     await strategy.autoCompoundWithPermit();
     const lpBalance = await uniLpToken.balanceOf(owner);
-    expect(lpBalance).to.be.above(0); 
+    expect(lpBalance).to.be.above(0);
   });
-
 });
 
 describe("Test Auto-compound with permit", function () {
   it("Should Auto-compound", async function () {
-    const uniLpToken = await hre.ethers.getContractAt("UniswapV2Pair", TOKE_ETH_UNIV2_PAIR[netId]);
+    const uniLpToken = await hre.ethers.getContractAt(
+      "UniswapV2Pair",
+      TOKE_ETH_UNIV2_PAIR[netId]
+    );
     await strategy.autoCompoundWithPermit(
-      signature.recipient, signature.v,signature.r,signature.s
+      signature.recipient,
+      signature.v,
+      signature.r,
+      signature.s
     );
 
-      const lpBalance = await uniLpToken.balanceOf(owner);
-      expect(lpBalance).to.be.above(0);
+    const lpBalance = await uniLpToken.balanceOf(owner);
+    expect(lpBalance).to.be.above(0);
   });
 
   describe("Test Withdraw", function () {
@@ -109,5 +137,4 @@ describe("Test Auto-compound with permit", function () {
       strategy.withdraw(lpBalance);
     });
   });
-
 });
