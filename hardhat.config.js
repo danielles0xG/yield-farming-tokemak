@@ -41,16 +41,20 @@ module.exports = {
     "mainnet-fork": {
       url: "http://127.0.0.1:8545",
       accounts:
-        process.env.TEST_ETH_ACCOUNT_PRIVATE_KEY !== undefined
-          ? [process.env.TEST_ETH_ACCOUNT_PRIVATE_KEY]
-          : [],
+      [
+        '0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80',
+         process.env.TEST_ETH_ACCOUNT_PRIVATE_KEY
+    ],
+
+      blockNumber: 12903088, // since pool deployment
+      chainId:31337,
     },
     hardhat: {
       chainId: CHAIN_IDS.hardhat,
       forking: {
         // Using Alchemy
         url: `https://eth-mainnet.alchemyapi.io/v2/OlIDDqLH9Uo3AUQ_0ezj6sfqHIGxJRxw`, 
-        blockNumber: 12973188 // since pool deployment
+        blockNumber: 12903088 // since pool deployment
       },
     },
   },

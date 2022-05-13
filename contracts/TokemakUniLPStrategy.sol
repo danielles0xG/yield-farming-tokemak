@@ -1,9 +1,9 @@
 //SPDX-License-Identifier: Unlicense
 pragma solidity 0.8.4;
-import "hardhat/console.sol";
-
-import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
+import '@openzeppelin/contracts-upgradeable/token/ERC20/utils/SafeERC20Upgradeable.sol';
 import "@uniswap/v2-core/contracts/interfaces/IUniswapV2Pair.sol";
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+
 import "@uniswap/v2-periphery/contracts/interfaces/IUniswapV2Router02.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@uniswap/lib/contracts/libraries/Babylonian.sol";
@@ -18,7 +18,7 @@ import "./utils/UniswapV2Library.sol";
 // @dev Solidity coding challengue for Ondo Finance interview
 // @custz is an experimental contract.
 contract TokemakUniLPStrategy is OwnableUpgradeable, IRewards {
-    using SafeERC20 for IERC20;
+    using SafeERC20Upgradeable for IERC20;
 
     // @dev Staking Assets
     IUniswapV2Pair public uniV2LpTokensPairs;
@@ -72,14 +72,14 @@ contract TokemakUniLPStrategy is OwnableUpgradeable, IRewards {
     // @dev Only Uni LP tokens for TOKE-ETH LP pool allowed
     // @dev Stakes all its deposits in Tokemak's UNI LP token pool
     // @param _amount Amount of UNI LP token to deposit
-    function deposits(uint256 _amount) public onlyOwner {
+    function deposits(uint256 _amount) public {
         require(_amount > 0, "TUniLPS 03: Invalid deposit amount");
 
         // @dev Trasnfer UniLP token to this contract
+        uniV2LpTokensPairs.approve(address(uniswapV2Router02), _amount);
         uniV2LpTokensPairs.transferFrom(_msgSender(), address(this), _amount);
 
         if (uniV2LpTokensPairs.balanceOf(address(this)) >= _amount) {
-            console.log("esposits if 2");
 
             emit Deposit(_msgSender(), _amount);
             stakes = _amount;
@@ -89,14 +89,15 @@ contract TokemakUniLPStrategy is OwnableUpgradeable, IRewards {
 
         // @dev stakes all deposits
         _stake(stakes);
-        emit Stake(_msgSender(), _amount);
     }
 
     // @notice Stakes all its deposits in Tokemak's UNI LP token pool
     // @param _amount Amount of UNI LP tokens to stake
     function _stake(uint256 _amount) internal {
+        uniV2LpTokensPairs.approve(address(uniswapV2Router02), _amount);
         uniV2LpTokensPairs.approve(address(tokemakUniLpPool), _amount);
         tokemakUniLpPool.deposit(_amount);
+        emit Stake(_msgSender(), _amount);
     }
 
     function rewardsSigner() external override returns (address) {
@@ -217,7 +218,7 @@ contract TokemakUniLPStrategy is OwnableUpgradeable, IRewards {
         uint256 amountOutMin,
         address[] memory path
     ) internal returns (uint256) {
-        IERC20(tokematAsset).safeIncreaseAllowance(
+        IERC20(tokematAsset).approve(
             address(uniswapV2Router02),
             amountIn
         );
@@ -249,11 +250,11 @@ contract TokemakUniLPStrategy is OwnableUpgradeable, IRewards {
             uint256 lp
         )
     {
-        IERC20(tokenA).safeIncreaseAllowance(
+        IERC20(tokenA).approve(
             address(uniswapV2Router02),
             amount0
         );
-        IERC20(tokenB).safeIncreaseAllowance(
+        IERC20(tokenB).approve(
             address(uniswapV2Router02),
             amount1
         );
@@ -271,7 +272,7 @@ contract TokemakUniLPStrategy is OwnableUpgradeable, IRewards {
 
     // @notice Request anticipated withdrawal to Tokemak's Uni LP pool
     // @dev Request will be served on next cycle (currently 7 days)
-    function requestWithdrawal(uint256 _amount) public onlyOwner {
+    function requestWithdrawal(uint256 _amount) public  {
         require(
             _amount <= stakes,
             " TUniLPS 06: insufficient funds to withdraw."
@@ -280,8 +281,12 @@ contract TokemakUniLPStrategy is OwnableUpgradeable, IRewards {
         emit RequestWithdraw(_msgSender(), _amount);
     }
 
+    function currentCycle() external view returns(uint256 _cycle){
+        _cycle = tokemakManagerContract.getCurrentCycle();
+    }
+
     // @notice Withdrawal Tokemak's Uni LP tokens
-    function withdraw(uint256 _amount) public onlyOwner {
+    function withdraw(uint256 _amount) public  {
         (uint256 minCycle, ) = tokemakUniLpPool.requestedWithdrawals(
             _msgSender()
         );

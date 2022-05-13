@@ -1,0 +1,167 @@
+{
+  "manifestVersion": "3.2",
+  "admin": {
+    "address": "0x0E801D84Fa97b50751Dbf25036d067dCf18858bF",
+    "txHash": "0xe7fecbe59d310e85b7675db1a7afb3718eb445a51c6a05e3e72c935b0a2c79b3"
+  },
+  "proxies": [
+    {
+      "address": "0x8f86403A4DE0BB5791fa46B8e795C547942fE4Cf",
+      "txHash": "0x40a0b3404b8f25d04325eeb47b0b453a065e96df8c3e65b4d22e6a624adee1a1",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x9d4454B023096f34B160D6B654540c56A1F81688",
+      "txHash": "0x78fe801093f7cc4fdcb53e8d7e4969559dfeb0167cc9fb7f465633ae0be12b35",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x809d550fca64d94Bd9F66E60752A544199cfAC3D",
+      "txHash": "0xef0dea33a9f0cb945f035751356a98bd2bb81a907c97255d64b843a516268279",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x5f3f1dBD7B74C6B46e8c44f98792A1dAf8d69154",
+      "txHash": "0xde89b7d10339ad1209ea9c11acd30ea46dd0fe9775994e54a2391a15c25774d5",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x82e01223d51Eb87e16A03E24687EDF0F294da6f1",
+      "txHash": "0x19b85154b30b3873b55d7cf7a729d54c5bd4705b5458e1d156edf5df8df3bea6",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x1429859428C0aBc9C2C47C8Ee9FBaf82cFA0F20f",
+      "txHash": "0x4750539eb22d55732dbc5fb51efa4c94700553373557afc2f5aa08e6784bf875",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x4C4a2f8c81640e47606d3fd77B353E87Ba015584",
+      "txHash": "0xbc8aa2b13ea7b2f6c29d1d290696373d400c94ff6dbde64a7f9610bff4928946",
+      "kind": "transparent"
+    }
+  ],
+  "impls": {
+    "4256ff8daa51e52153ecafa03ac986051e7a240cd07b0c214b9d9cd24a96f13b": {
+      "address": "0x99bbA657f2BbC93c02D617f8bA121cB8Fc104Acf",
+      "txHash": "0x2c6ac43fcbbfdf3a2fa9e9fca2d3e1bb777298d1b323bbdbf46517d8422ad9fe",
+      "layout": {
+        "storage": [
+          {
+            "contract": "Initializable",
+            "label": "_initialized",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:39"
+          },
+          {
+            "contract": "Initializable",
+            "label": "_initializing",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:44"
+          },
+          {
+            "contract": "ContextUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:36"
+          },
+          {
+            "contract": "OwnableUpgradeable",
+            "label": "_owner",
+            "type": "t_address",
+            "src": "../@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:22"
+          },
+          {
+            "contract": "OwnableUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)49_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:87"
+          },
+          {
+            "contract": "TokemakUniLPStrategy",
+            "label": "uniV2LpTokensPairs",
+            "type": "t_contract(IUniswapV2Pair)3265",
+            "src": "../project:/contracts/TokemakUniLPStrategy.sol:24"
+          },
+          {
+            "contract": "TokemakUniLPStrategy",
+            "label": "tokematAsset",
+            "type": "t_contract(IERC20)2088",
+            "src": "../project:/contracts/TokemakUniLPStrategy.sol:25"
+          },
+          {
+            "contract": "TokemakUniLPStrategy",
+            "label": "wethAsset",
+            "type": "t_contract(IERC20)2088",
+            "src": "../project:/contracts/TokemakUniLPStrategy.sol:26"
+          },
+          {
+            "contract": "TokemakUniLPStrategy",
+            "label": "tokemakRwrdContract",
+            "type": "t_contract(IRewards)12749",
+            "src": "../project:/contracts/TokemakUniLPStrategy.sol:29"
+          },
+          {
+            "contract": "TokemakUniLPStrategy",
+            "label": "tokemakManagerContract",
+            "type": "t_contract(IManager)12695",
+            "src": "../project:/contracts/TokemakUniLPStrategy.sol:30"
+          },
+          {
+            "contract": "TokemakUniLPStrategy",
+            "label": "tokemakUniLpPool",
+            "type": "t_contract(ILiquidityPool)12475",
+            "src": "../project:/contracts/TokemakUniLPStrategy.sol:31"
+          },
+          {
+            "contract": "TokemakUniLPStrategy",
+            "label": "uniswapV2Router02",
+            "type": "t_contract(IUniswapV2Router02)3661",
+            "src": "../project:/contracts/TokemakUniLPStrategy.sol:34"
+          },
+          {
+            "contract": "TokemakUniLPStrategy",
+            "label": "stakes",
+            "type": "t_uint256",
+            "src": "../project:/contracts/TokemakUniLPStrategy.sol:37"
+          }
+        ],
+        "types": {
+          "t_contract(IUniswapV2Pair)3265": {
+            "label": "contract IUniswapV2Pair"
+          },
+          "t_contract(IERC20)2088": {
+            "label": "contract IERC20"
+          },
+          "t_contract(IRewards)12749": {
+            "label": "contract IRewards"
+          },
+          "t_contract(IManager)12695": {
+            "label": "contract IManager"
+          },
+          "t_contract(ILiquidityPool)12475": {
+            "label": "contract ILiquidityPool"
+          },
+          "t_contract(IUniswapV2Router02)3661": {
+            "label": "contract IUniswapV2Router02"
+          },
+          "t_uint256": {
+            "label": "uint256"
+          },
+          "t_address": {
+            "label": "address"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]"
+          },
+          "t_bool": {
+            "label": "bool"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,2075 @@
+{
+  "contractName": "ILiquidityPool",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "fxStateSender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "destinationOnL2",
+          "type": "address"
+        }
+      ],
+      "name": "DestinationsSet",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bool",
+          "name": "eventSendSet",
+          "type": "bool"
+        }
+      ],
+      "name": "EventSendSet",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "requestor",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "WithdrawalRequested",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "deposit",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "depositFor",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "requestWithdrawal",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "underlyer",
+      "outputs": [
+        {
+          "internalType": "contract ERC20Upgradeable",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "approveManager",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "withdraw",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "withheldLiquidity",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "requestedWithdrawals",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.4+commit.c7e474f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"fxStateSender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"destinationOnL2\",\"type\":\"address\"}],\"name\":\"DestinationsSet\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bool\",\"name\":\"eventSendSet\",\"type\":\"bool\"}],\"name\":\"EventSendSet\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"requestor\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"WithdrawalRequested\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"approveManager\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"deposit\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"depositFor\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"requestWithdrawal\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"requestedWithdrawals\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"underlyer\",\"outputs\":[{\"internalType\":\"contract ERC20Upgradeable\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"withdraw\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"withheldLiquidity\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"requestWithdrawal(uint256)\":{\"params\":{\"amount\":\"Amount of fTokens requested to be redeemed\"}},\"requestedWithdrawals(address)\":{\"params\":{\"account\":\"User account to check\"},\"returns\":{\"_0\":\"minCycle Cycle - block number - that must be active before withdraw is allowed, amount Token amount requested\"}},\"withdraw(uint256)\":{\"params\":{\"amount\":\"Amount of fTokens to redeem, value can be in excess of available tokens, operation will be reduced to maximum permissible\"}},\"withheldLiquidity()\":{\"returns\":{\"_0\":\"Amount of liquidity that should not be deployed for market making (this liquidity will be used for completing requested withdrawals)\"}}},\"title\":\"Interface for Pool\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"deposit(uint256)\":{\"notice\":\"Transfers amount of underlying token from user to this pool and mints fToken to the msg.sender.Depositor must have previously granted transfer approval to the pool via underlying token contract.Liquidity deposited is deployed on the next cycle - unless a withdrawal request is submitted, in which case the liquidity will be withheld.\"},\"depositFor(address,uint256)\":{\"notice\":\"Transfers amount of underlying token from user to this pool and mints fToken to the account.Depositor must have previously granted transfer approval to the pool via underlying token contract.Liquidity deposited is deployed on the next cycle - unless a withdrawal request is submitted, in which case the liquidity will be withheld.\"},\"requestWithdrawal(uint256)\":{\"notice\":\"Requests that the manager prepare funds for withdrawal next cycleInvoking this function when sender already has a currently pending request will overwrite that requested amount and reset the cycle timer\"},\"requestedWithdrawals(address)\":{\"notice\":\"Get withdraw requests for an account\"},\"withdraw(uint256)\":{\"notice\":\"Sender must first invoke requestWithdrawal in a previous cycleThis function will burn the fAsset and transfers underlying asset back to senderWill execute a partial withdrawal if either available liquidity or previously requested amount is insufficient\"}},\"notice\":\"Allows users to deposit ERC-20 tokens to be deployed to market makers.Mints 1:1 fToken on deposit, represeting an IOU for the undelrying token that is freely transferable.Holders of fTokens earn rewards based on duration their tokens were deployed and the demand for that asset.Holders of fTokens can redeem for underlying asset after issuing requestWithdrawal and waiting for the next cycle.\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/interfaces/ILiquidityPool.sol\":\"ILiquidityPool\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol\":{\"keccak256\":\"0x372b0bc04e3b4c074559bbbfb1317afddb56de5504158ca25a7f9cd403980445\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://88b812365459a042c2aab5c689ff723098e0e19cb372718d3dd028b3c406e4f6\",\"dweb:/ipfs/QmTsLrMYzPjnB85pyAy85NNcBg64RPVueJARzwNg9xMyR1\"]},\"@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol\":{\"keccak256\":\"0x7160017c8d2373a33a6d7e45368d60d7d582ea1695a098de8356c94dab2ec3ce\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://9057befea40d1fc42ccb4a6d3d8428e8e1a21c3f08bf7032a280049b0167b145\",\"dweb:/ipfs/QmQx7oAxLJs17wcG2pZN4PW9xKgo7AW92SttiJ7dWCGmTt\"]},\"@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol\":{\"keccak256\":\"0x6777f3fccb5dab95a9088ef62c41bee0198fd92e50d7c94f0e3733788af4079e\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://bf67f82ba68e13b306fa350fc0e2acaac3b0e90b2734a56e61302d79b408fb0b\",\"dweb:/ipfs/QmVhMTANFDtZFpxdGk6SayfttDxEh23GrT8ttiFRoow7c2\"]},\"@openzeppelin/contracts-upgradeable/token/ERC20/extensions/IERC20MetadataUpgradeable.sol\":{\"keccak256\":\"0x605434219ebbe4653f703640f06969faa5a1d78f0bfef878e5ddbb1ca369ceeb\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://4c9c634f99dd02d73ce7498b03a6305e251c05eeebb71457306561c1fab0fa7d\",\"dweb:/ipfs/QmbYRBbZHy8YoaQKXdPryiL3CSS7uUaRfRYi1TUj9cTqJQ\"]},\"@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol\":{\"keccak256\":\"0x55cf2bd9fc76704ddcdc19834cd288b7de00fc0f298a40ea16a954ae8991db2d\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://37e4df53c8d2e3c1062c1c7b2c17366db7de03bfd2559d340ca95c588aa49c2f\",\"dweb:/ipfs/QmQ9vsG3o4wED3FRogiSUhdzJvZSjjYFtydzXvFEJtgZk4\"]},\"@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol\":{\"keccak256\":\"0x963ea7f0b48b032eef72fe3a7582edf78408d6f834115b9feadd673a4d5bd149\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://d6520943ea55fdf5f0bafb39ed909f64de17051bc954ff3e88c9e5621412c79c\",\"dweb:/ipfs/QmWZ4rAKTQbNG2HxGs46AcTXShsVytKeLs7CUCdCSv5N7a\"]},\"project:/contracts/interfaces/ILiquidityPool.sol\":{\"keccak256\":\"0xf45c0ab8590e347c6cc6c2a31517b17864d4e570c4c537b9181d8fe38f7c554b\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://a156414899837b95a517edff2c9e933829455c5b50a6f6c8de3908f4629a7d84\",\"dweb:/ipfs/QmUe9wFV53TeDpV2b1tc4VYhxKwzkxATHh1A8vSeWuXQ1w\"]},\"project:/contracts/interfaces/IManager.sol\":{\"keccak256\":\"0xf1a57f799efe574e9b8dc8a84cf4e88d19ea8d46cd57c5e1d7a9626a1b40c7cc\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://af42b95cc4b1f6ce16c5882cc837463cea9c767cd5e95207a1e62546ddc88788\",\"dweb:/ipfs/QmPqRJJ1VuGks796jEpF1sd62L18kb5AugVMgu32aYhHs2\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: MIT\n\npragma solidity 0.8.4;\n\nimport \"@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol\";\nimport \"./IManager.sol\";\n\n/// @title Interface for Pool\n/// @notice Allows users to deposit ERC-20 tokens to be deployed to market makers.\n/// @notice Mints 1:1 fToken on deposit, represeting an IOU for the undelrying token that is freely transferable.\n/// @notice Holders of fTokens earn rewards based on duration their tokens were deployed and the demand for that asset.\n/// @notice Holders of fTokens can redeem for underlying asset after issuing requestWithdrawal and waiting for the next cycle.\ninterface ILiquidityPool {\n    struct WithdrawalInfo {\n        uint256 minCycle;\n        uint256 amount;\n    }\n\n    event DestinationsSet(address fxStateSender, address destinationOnL2);\n    event EventSendSet(bool eventSendSet);\n    event WithdrawalRequested(address requestor, uint256 amount);\n\n    /// @notice Transfers amount of underlying token from user to this pool and mints fToken to the msg.sender.\n    /// @notice Depositor must have previously granted transfer approval to the pool via underlying token contract.\n    /// @notice Liquidity deposited is deployed on the next cycle - unless a withdrawal request is submitted, in which case the liquidity will be withheld.\n    function deposit(uint256 amount) external;\n\n    /// @notice Transfers amount of underlying token from user to this pool and mints fToken to the account.\n    /// @notice Depositor must have previously granted transfer approval to the pool via underlying token contract.\n    /// @notice Liquidity deposited is deployed on the next cycle - unless a withdrawal request is submitted, in which case the liquidity will be withheld.\n    function depositFor(address account, uint256 amount) external;\n\n    /// @notice Requests that the manager prepare funds for withdrawal next cycle\n    /// @notice Invoking this function when sender already has a currently pending request will overwrite that requested amount and reset the cycle timer\n    /// @param amount Amount of fTokens requested to be redeemed\n    function requestWithdrawal(uint256 amount) external;\n\n    function underlyer() external view returns (ERC20Upgradeable);\n\n    function approveManager(uint256 amount) external;\n\n    /// @notice Sender must first invoke requestWithdrawal in a previous cycle\n    /// @notice This function will burn the fAsset and transfers underlying asset back to sender\n    /// @notice Will execute a partial withdrawal if either available liquidity or previously requested amount is insufficient\n    /// @param amount Amount of fTokens to redeem, value can be in excess of available tokens, operation will be reduced to maximum permissible\n    function withdraw(uint256 amount) external;\n\n    /// @return Amount of liquidity that should not be deployed for market making (this liquidity will be used for completing requested withdrawals)\n    function withheldLiquidity() external view returns (uint256);\n\n    /// @notice Get withdraw requests for an account\n    /// @param account User account to check\n    /// @return minCycle Cycle - block number - that must be active before withdraw is allowed, amount Token amount requested\n    function requestedWithdrawals(address account)\n        external\n        view\n        returns (uint256, uint256);\n}\n",
+  "sourcePath": "/Users/danielguerrero/workspace/ondo.finance/solidity-coding-challenge-eqjvpy/contracts/interfaces/ILiquidityPool.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/interfaces/ILiquidityPool.sol",
+    "exportedSymbols": {
+      "AddressUpgradeable": [
+        1380
+      ],
+      "ContextUpgradeable": [
+        1422
+      ],
+      "ERC20Upgradeable": [
+        810
+      ],
+      "IERC20MetadataUpgradeable": [
+        913
+      ],
+      "IERC20Upgradeable": [
+        888
+      ],
+      "ILiquidityPool": [
+        12489
+      ],
+      "IManager": [
+        12709
+      ],
+      "Initializable": [
+        197
+      ]
+    },
+    "id": 12490,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 12411,
+        "literals": [
+          "solidity",
+          "0.8",
+          ".4"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "33:22:21"
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol",
+        "file": "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol",
+        "id": 12412,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 12490,
+        "sourceUnit": 811,
+        "src": "57:78:21",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "project:/contracts/interfaces/IManager.sol",
+        "file": "./IManager.sol",
+        "id": 12413,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 12490,
+        "sourceUnit": 12710,
+        "src": "136:24:21",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 12414,
+          "nodeType": "StructuredDocumentation",
+          "src": "162:474:21",
+          "text": "@title Interface for Pool\n @notice Allows users to deposit ERC-20 tokens to be deployed to market makers.\n @notice Mints 1:1 fToken on deposit, represeting an IOU for the undelrying token that is freely transferable.\n @notice Holders of fTokens earn rewards based on duration their tokens were deployed and the demand for that asset.\n @notice Holders of fTokens can redeem for underlying asset after issuing requestWithdrawal and waiting for the next cycle."
+        },
+        "fullyImplemented": false,
+        "id": 12489,
+        "linearizedBaseContracts": [
+          12489
+        ],
+        "name": "ILiquidityPool",
+        "nameLocation": "646:14:21",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "ILiquidityPool.WithdrawalInfo",
+            "id": 12419,
+            "members": [
+              {
+                "constant": false,
+                "id": 12416,
+                "mutability": "mutable",
+                "name": "minCycle",
+                "nameLocation": "707:8:21",
+                "nodeType": "VariableDeclaration",
+                "scope": 12419,
+                "src": "699:16:21",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 12415,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "699:7:21",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 12418,
+                "mutability": "mutable",
+                "name": "amount",
+                "nameLocation": "733:6:21",
+                "nodeType": "VariableDeclaration",
+                "scope": 12419,
+                "src": "725:14:21",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 12417,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "725:7:21",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "WithdrawalInfo",
+            "nameLocation": "674:14:21",
+            "nodeType": "StructDefinition",
+            "scope": 12489,
+            "src": "667:79:21",
+            "visibility": "public"
+          },
+          {
+            "anonymous": false,
+            "id": 12425,
+            "name": "DestinationsSet",
+            "nameLocation": "758:15:21",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 12424,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12421,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "fxStateSender",
+                  "nameLocation": "782:13:21",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12425,
+                  "src": "774:21:21",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 12420,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "774:7:21",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 12423,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "destinationOnL2",
+                  "nameLocation": "805:15:21",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12425,
+                  "src": "797:23:21",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 12422,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "797:7:21",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "773:48:21"
+            },
+            "src": "752:70:21"
+          },
+          {
+            "anonymous": false,
+            "id": 12429,
+            "name": "EventSendSet",
+            "nameLocation": "833:12:21",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 12428,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12427,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "eventSendSet",
+                  "nameLocation": "851:12:21",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12429,
+                  "src": "846:17:21",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 12426,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "846:4:21",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "845:19:21"
+            },
+            "src": "827:38:21"
+          },
+          {
+            "anonymous": false,
+            "id": 12435,
+            "name": "WithdrawalRequested",
+            "nameLocation": "876:19:21",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 12434,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12431,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "requestor",
+                  "nameLocation": "904:9:21",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12435,
+                  "src": "896:17:21",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 12430,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "896:7:21",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 12433,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nameLocation": "923:6:21",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12435,
+                  "src": "915:14:21",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 12432,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "915:7:21",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "895:35:21"
+            },
+            "src": "870:61:21"
+          },
+          {
+            "documentation": {
+              "id": 12436,
+              "nodeType": "StructuredDocumentation",
+              "src": "937:379:21",
+              "text": "@notice Transfers amount of underlying token from user to this pool and mints fToken to the msg.sender.\n @notice Depositor must have previously granted transfer approval to the pool via underlying token contract.\n @notice Liquidity deposited is deployed on the next cycle - unless a withdrawal request is submitted, in which case the liquidity will be withheld."
+            },
+            "functionSelector": "b6b55f25",
+            "id": 12441,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "deposit",
+            "nameLocation": "1330:7:21",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 12439,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12438,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nameLocation": "1346:6:21",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12441,
+                  "src": "1338:14:21",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 12437,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1338:7:21",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1337:16:21"
+            },
+            "returnParameters": {
+              "id": 12440,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1362:0:21"
+            },
+            "scope": 12489,
+            "src": "1321:42:21",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 12442,
+              "nodeType": "StructuredDocumentation",
+              "src": "1369:376:21",
+              "text": "@notice Transfers amount of underlying token from user to this pool and mints fToken to the account.\n @notice Depositor must have previously granted transfer approval to the pool via underlying token contract.\n @notice Liquidity deposited is deployed on the next cycle - unless a withdrawal request is submitted, in which case the liquidity will be withheld."
+            },
+            "functionSelector": "2f4f21e2",
+            "id": 12449,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "depositFor",
+            "nameLocation": "1759:10:21",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 12447,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12444,
+                  "mutability": "mutable",
+                  "name": "account",
+                  "nameLocation": "1778:7:21",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12449,
+                  "src": "1770:15:21",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 12443,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1770:7:21",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 12446,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nameLocation": "1795:6:21",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12449,
+                  "src": "1787:14:21",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 12445,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1787:7:21",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1769:33:21"
+            },
+            "returnParameters": {
+              "id": 12448,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1811:0:21"
+            },
+            "scope": 12489,
+            "src": "1750:62:21",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 12450,
+              "nodeType": "StructuredDocumentation",
+              "src": "1818:296:21",
+              "text": "@notice Requests that the manager prepare funds for withdrawal next cycle\n @notice Invoking this function when sender already has a currently pending request will overwrite that requested amount and reset the cycle timer\n @param amount Amount of fTokens requested to be redeemed"
+            },
+            "functionSelector": "9ee679e8",
+            "id": 12455,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "requestWithdrawal",
+            "nameLocation": "2128:17:21",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 12453,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12452,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nameLocation": "2154:6:21",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12455,
+                  "src": "2146:14:21",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 12451,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2146:7:21",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2145:16:21"
+            },
+            "returnParameters": {
+              "id": 12454,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2170:0:21"
+            },
+            "scope": 12489,
+            "src": "2119:52:21",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "7758f3fa",
+            "id": 12461,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "underlyer",
+            "nameLocation": "2186:9:21",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 12456,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2195:2:21"
+            },
+            "returnParameters": {
+              "id": 12460,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12459,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12461,
+                  "src": "2221:16:21",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_ERC20Upgradeable_$810",
+                    "typeString": "contract ERC20Upgradeable"
+                  },
+                  "typeName": {
+                    "id": 12458,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 12457,
+                      "name": "ERC20Upgradeable",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 810,
+                      "src": "2221:16:21"
+                    },
+                    "referencedDeclaration": 810,
+                    "src": "2221:16:21",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_ERC20Upgradeable_$810",
+                      "typeString": "contract ERC20Upgradeable"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2220:18:21"
+            },
+            "scope": 12489,
+            "src": "2177:62:21",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "020935c5",
+            "id": 12466,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "approveManager",
+            "nameLocation": "2254:14:21",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 12464,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12463,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nameLocation": "2277:6:21",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12466,
+                  "src": "2269:14:21",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 12462,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2269:7:21",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2268:16:21"
+            },
+            "returnParameters": {
+              "id": 12465,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2293:0:21"
+            },
+            "scope": 12489,
+            "src": "2245:49:21",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 12467,
+              "nodeType": "StructuredDocumentation",
+              "src": "2300:442:21",
+              "text": "@notice Sender must first invoke requestWithdrawal in a previous cycle\n @notice This function will burn the fAsset and transfers underlying asset back to sender\n @notice Will execute a partial withdrawal if either available liquidity or previously requested amount is insufficient\n @param amount Amount of fTokens to redeem, value can be in excess of available tokens, operation will be reduced to maximum permissible"
+            },
+            "functionSelector": "2e1a7d4d",
+            "id": 12472,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "withdraw",
+            "nameLocation": "2756:8:21",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 12470,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12469,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nameLocation": "2773:6:21",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12472,
+                  "src": "2765:14:21",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 12468,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2765:7:21",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2764:16:21"
+            },
+            "returnParameters": {
+              "id": 12471,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2789:0:21"
+            },
+            "scope": 12489,
+            "src": "2747:43:21",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 12473,
+              "nodeType": "StructuredDocumentation",
+              "src": "2796:144:21",
+              "text": "@return Amount of liquidity that should not be deployed for market making (this liquidity will be used for completing requested withdrawals)"
+            },
+            "functionSelector": "5842f88c",
+            "id": 12478,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "withheldLiquidity",
+            "nameLocation": "2954:17:21",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 12474,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2971:2:21"
+            },
+            "returnParameters": {
+              "id": 12477,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12476,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12478,
+                  "src": "2997:7:21",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 12475,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2997:7:21",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2996:9:21"
+            },
+            "scope": 12489,
+            "src": "2945:61:21",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 12479,
+              "nodeType": "StructuredDocumentation",
+              "src": "3012:219:21",
+              "text": "@notice Get withdraw requests for an account\n @param account User account to check\n @return minCycle Cycle - block number - that must be active before withdraw is allowed, amount Token amount requested"
+            },
+            "functionSelector": "bb582d80",
+            "id": 12488,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "requestedWithdrawals",
+            "nameLocation": "3245:20:21",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 12482,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12481,
+                  "mutability": "mutable",
+                  "name": "account",
+                  "nameLocation": "3274:7:21",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12488,
+                  "src": "3266:15:21",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 12480,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3266:7:21",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3265:17:21"
+            },
+            "returnParameters": {
+              "id": 12487,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12484,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12488,
+                  "src": "3330:7:21",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 12483,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3330:7:21",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 12486,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12488,
+                  "src": "3339:7:21",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 12485,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3339:7:21",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3329:18:21"
+            },
+            "scope": 12489,
+            "src": "3236:112:21",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 12490,
+        "src": "636:2714:21",
+        "usedErrors": []
+      }
+    ],
+    "src": "33:3318:21"
+  },
+  "legacyAST": {
+    "absolutePath": "project:/contracts/interfaces/ILiquidityPool.sol",
+    "exportedSymbols": {
+      "AddressUpgradeable": [
+        1380
+      ],
+      "ContextUpgradeable": [
+        1422
+      ],
+      "ERC20Upgradeable": [
+        810
+      ],
+      "IERC20MetadataUpgradeable": [
+        913
+      ],
+      "IERC20Upgradeable": [
+        888
+      ],
+      "ILiquidityPool": [
+        12489
+      ],
+      "IManager": [
+        12709
+      ],
+      "Initializable": [
+        197
+      ]
+    },
+    "id": 12490,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 12411,
+        "literals": [
+          "solidity",
+          "0.8",
+          ".4"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "33:22:21"
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol",
+        "file": "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol",
+        "id": 12412,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 12490,
+        "sourceUnit": 811,
+        "src": "57:78:21",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "project:/contracts/interfaces/IManager.sol",
+        "file": "./IManager.sol",
+        "id": 12413,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 12490,
+        "sourceUnit": 12710,
+        "src": "136:24:21",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 12414,
+          "nodeType": "StructuredDocumentation",
+          "src": "162:474:21",
+          "text": "@title Interface for Pool\n @notice Allows users to deposit ERC-20 tokens to be deployed to market makers.\n @notice Mints 1:1 fToken on deposit, represeting an IOU for the undelrying token that is freely transferable.\n @notice Holders of fTokens earn rewards based on duration their tokens were deployed and the demand for that asset.\n @notice Holders of fTokens can redeem for underlying asset after issuing requestWithdrawal and waiting for the next cycle."
+        },
+        "fullyImplemented": false,
+        "id": 12489,
+        "linearizedBaseContracts": [
+          12489
+        ],
+        "name": "ILiquidityPool",
+        "nameLocation": "646:14:21",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "ILiquidityPool.WithdrawalInfo",
+            "id": 12419,
+            "members": [
+              {
+                "constant": false,
+                "id": 12416,
+                "mutability": "mutable",
+                "name": "minCycle",
+                "nameLocation": "707:8:21",
+                "nodeType": "VariableDeclaration",
+                "scope": 12419,
+                "src": "699:16:21",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 12415,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "699:7:21",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 12418,
+                "mutability": "mutable",
+                "name": "amount",
+                "nameLocation": "733:6:21",
+                "nodeType": "VariableDeclaration",
+                "scope": 12419,
+                "src": "725:14:21",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 12417,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "725:7:21",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "WithdrawalInfo",
+            "nameLocation": "674:14:21",
+            "nodeType": "StructDefinition",
+            "scope": 12489,
+            "src": "667:79:21",
+            "visibility": "public"
+          },
+          {
+            "anonymous": false,
+            "id": 12425,
+            "name": "DestinationsSet",
+            "nameLocation": "758:15:21",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 12424,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12421,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "fxStateSender",
+                  "nameLocation": "782:13:21",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12425,
+                  "src": "774:21:21",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 12420,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "774:7:21",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 12423,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "destinationOnL2",
+                  "nameLocation": "805:15:21",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12425,
+                  "src": "797:23:21",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 12422,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "797:7:21",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "773:48:21"
+            },
+            "src": "752:70:21"
+          },
+          {
+            "anonymous": false,
+            "id": 12429,
+            "name": "EventSendSet",
+            "nameLocation": "833:12:21",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 12428,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12427,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "eventSendSet",
+                  "nameLocation": "851:12:21",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12429,
+                  "src": "846:17:21",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 12426,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "846:4:21",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "845:19:21"
+            },
+            "src": "827:38:21"
+          },
+          {
+            "anonymous": false,
+            "id": 12435,
+            "name": "WithdrawalRequested",
+            "nameLocation": "876:19:21",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 12434,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12431,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "requestor",
+                  "nameLocation": "904:9:21",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12435,
+                  "src": "896:17:21",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 12430,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "896:7:21",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 12433,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nameLocation": "923:6:21",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12435,
+                  "src": "915:14:21",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 12432,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "915:7:21",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "895:35:21"
+            },
+            "src": "870:61:21"
+          },
+          {
+            "documentation": {
+              "id": 12436,
+              "nodeType": "StructuredDocumentation",
+              "src": "937:379:21",
+              "text": "@notice Transfers amount of underlying token from user to this pool and mints fToken to the msg.sender.\n @notice Depositor must have previously granted transfer approval to the pool via underlying token contract.\n @notice Liquidity deposited is deployed on the next cycle - unless a withdrawal request is submitted, in which case the liquidity will be withheld."
+            },
+            "functionSelector": "b6b55f25",
+            "id": 12441,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "deposit",
+            "nameLocation": "1330:7:21",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 12439,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12438,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nameLocation": "1346:6:21",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12441,
+                  "src": "1338:14:21",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 12437,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1338:7:21",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1337:16:21"
+            },
+            "returnParameters": {
+              "id": 12440,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1362:0:21"
+            },
+            "scope": 12489,
+            "src": "1321:42:21",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 12442,
+              "nodeType": "StructuredDocumentation",
+              "src": "1369:376:21",
+              "text": "@notice Transfers amount of underlying token from user to this pool and mints fToken to the account.\n @notice Depositor must have previously granted transfer approval to the pool via underlying token contract.\n @notice Liquidity deposited is deployed on the next cycle - unless a withdrawal request is submitted, in which case the liquidity will be withheld."
+            },
+            "functionSelector": "2f4f21e2",
+            "id": 12449,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "depositFor",
+            "nameLocation": "1759:10:21",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 12447,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12444,
+                  "mutability": "mutable",
+                  "name": "account",
+                  "nameLocation": "1778:7:21",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12449,
+                  "src": "1770:15:21",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 12443,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1770:7:21",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 12446,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nameLocation": "1795:6:21",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12449,
+                  "src": "1787:14:21",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 12445,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1787:7:21",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1769:33:21"
+            },
+            "returnParameters": {
+              "id": 12448,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1811:0:21"
+            },
+            "scope": 12489,
+            "src": "1750:62:21",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 12450,
+              "nodeType": "StructuredDocumentation",
+              "src": "1818:296:21",
+              "text": "@notice Requests that the manager prepare funds for withdrawal next cycle\n @notice Invoking this function when sender already has a currently pending request will overwrite that requested amount and reset the cycle timer\n @param amount Amount of fTokens requested to be redeemed"
+            },
+            "functionSelector": "9ee679e8",
+            "id": 12455,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "requestWithdrawal",
+            "nameLocation": "2128:17:21",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 12453,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12452,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nameLocation": "2154:6:21",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12455,
+                  "src": "2146:14:21",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 12451,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2146:7:21",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2145:16:21"
+            },
+            "returnParameters": {
+              "id": 12454,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2170:0:21"
+            },
+            "scope": 12489,
+            "src": "2119:52:21",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "7758f3fa",
+            "id": 12461,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "underlyer",
+            "nameLocation": "2186:9:21",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 12456,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2195:2:21"
+            },
+            "returnParameters": {
+              "id": 12460,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12459,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12461,
+                  "src": "2221:16:21",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_ERC20Upgradeable_$810",
+                    "typeString": "contract ERC20Upgradeable"
+                  },
+                  "typeName": {
+                    "id": 12458,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 12457,
+                      "name": "ERC20Upgradeable",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 810,
+                      "src": "2221:16:21"
+                    },
+                    "referencedDeclaration": 810,
+                    "src": "2221:16:21",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_ERC20Upgradeable_$810",
+                      "typeString": "contract ERC20Upgradeable"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2220:18:21"
+            },
+            "scope": 12489,
+            "src": "2177:62:21",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "020935c5",
+            "id": 12466,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "approveManager",
+            "nameLocation": "2254:14:21",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 12464,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12463,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nameLocation": "2277:6:21",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12466,
+                  "src": "2269:14:21",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 12462,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2269:7:21",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2268:16:21"
+            },
+            "returnParameters": {
+              "id": 12465,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2293:0:21"
+            },
+            "scope": 12489,
+            "src": "2245:49:21",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 12467,
+              "nodeType": "StructuredDocumentation",
+              "src": "2300:442:21",
+              "text": "@notice Sender must first invoke requestWithdrawal in a previous cycle\n @notice This function will burn the fAsset and transfers underlying asset back to sender\n @notice Will execute a partial withdrawal if either available liquidity or previously requested amount is insufficient\n @param amount Amount of fTokens to redeem, value can be in excess of available tokens, operation will be reduced to maximum permissible"
+            },
+            "functionSelector": "2e1a7d4d",
+            "id": 12472,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "withdraw",
+            "nameLocation": "2756:8:21",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 12470,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12469,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nameLocation": "2773:6:21",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12472,
+                  "src": "2765:14:21",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 12468,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2765:7:21",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2764:16:21"
+            },
+            "returnParameters": {
+              "id": 12471,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2789:0:21"
+            },
+            "scope": 12489,
+            "src": "2747:43:21",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 12473,
+              "nodeType": "StructuredDocumentation",
+              "src": "2796:144:21",
+              "text": "@return Amount of liquidity that should not be deployed for market making (this liquidity will be used for completing requested withdrawals)"
+            },
+            "functionSelector": "5842f88c",
+            "id": 12478,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "withheldLiquidity",
+            "nameLocation": "2954:17:21",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 12474,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2971:2:21"
+            },
+            "returnParameters": {
+              "id": 12477,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12476,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12478,
+                  "src": "2997:7:21",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 12475,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2997:7:21",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2996:9:21"
+            },
+            "scope": 12489,
+            "src": "2945:61:21",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 12479,
+              "nodeType": "StructuredDocumentation",
+              "src": "3012:219:21",
+              "text": "@notice Get withdraw requests for an account\n @param account User account to check\n @return minCycle Cycle - block number - that must be active before withdraw is allowed, amount Token amount requested"
+            },
+            "functionSelector": "bb582d80",
+            "id": 12488,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "requestedWithdrawals",
+            "nameLocation": "3245:20:21",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 12482,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12481,
+                  "mutability": "mutable",
+                  "name": "account",
+                  "nameLocation": "3274:7:21",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12488,
+                  "src": "3266:15:21",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 12480,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3266:7:21",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3265:17:21"
+            },
+            "returnParameters": {
+              "id": 12487,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12484,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12488,
+                  "src": "3330:7:21",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 12483,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3330:7:21",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 12486,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12488,
+                  "src": "3339:7:21",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 12485,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3339:7:21",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3329:18:21"
+            },
+            "scope": 12489,
+            "src": "3236:112:21",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 12490,
+        "src": "636:2714:21",
+        "usedErrors": []
+      }
+    ],
+    "src": "33:3318:21"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.4+commit.c7e474f2.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2022-04-12T16:43:38.845Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {
+      "requestWithdrawal(uint256)": {
+        "params": {
+          "amount": "Amount of fTokens requested to be redeemed"
+        }
+      },
+      "requestedWithdrawals(address)": {
+        "params": {
+          "account": "User account to check"
+        },
+        "returns": {
+          "_0": "minCycle Cycle - block number - that must be active before withdraw is allowed, amount Token amount requested"
+        }
+      },
+      "withdraw(uint256)": {
+        "params": {
+          "amount": "Amount of fTokens to redeem, value can be in excess of available tokens, operation will be reduced to maximum permissible"
+        }
+      },
+      "withheldLiquidity()": {
+        "returns": {
+          "_0": "Amount of liquidity that should not be deployed for market making (this liquidity will be used for completing requested withdrawals)"
+        }
+      }
+    },
+    "title": "Interface for Pool",
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {
+      "deposit(uint256)": {
+        "notice": "Transfers amount of underlying token from user to this pool and mints fToken to the msg.sender.Depositor must have previously granted transfer approval to the pool via underlying token contract.Liquidity deposited is deployed on the next cycle - unless a withdrawal request is submitted, in which case the liquidity will be withheld."
+      },
+      "depositFor(address,uint256)": {
+        "notice": "Transfers amount of underlying token from user to this pool and mints fToken to the account.Depositor must have previously granted transfer approval to the pool via underlying token contract.Liquidity deposited is deployed on the next cycle - unless a withdrawal request is submitted, in which case the liquidity will be withheld."
+      },
+      "requestWithdrawal(uint256)": {
+        "notice": "Requests that the manager prepare funds for withdrawal next cycleInvoking this function when sender already has a currently pending request will overwrite that requested amount and reset the cycle timer"
+      },
+      "requestedWithdrawals(address)": {
+        "notice": "Get withdraw requests for an account"
+      },
+      "withdraw(uint256)": {
+        "notice": "Sender must first invoke requestWithdrawal in a previous cycleThis function will burn the fAsset and transfers underlying asset back to senderWill execute a partial withdrawal if either available liquidity or previously requested amount is insufficient"
+      }
+    },
+    "notice": "Allows users to deposit ERC-20 tokens to be deployed to market makers.Mints 1:1 fToken on deposit, represeting an IOU for the undelrying token that is freely transferable.Holders of fTokens earn rewards based on duration their tokens were deployed and the demand for that asset.Holders of fTokens can redeem for underlying asset after issuing requestWithdrawal and waiting for the next cycle.",
+    "version": 1
+  }
+}

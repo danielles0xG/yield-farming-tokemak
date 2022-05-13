@@ -7,7 +7,7 @@ const MAX_UINT256 = new BigNumber("2")
   .minus(new BigNumber("1"));
 
 const sign = (domain, message, privateKey) => {
-  const { name, version = "1", chainId = 1, verifyingContract } = domain;
+  const { name, version, chainId , verifyingContract } = domain;
   const { id, cycle, wallet, amount } = message;
 
   const EIP712Domain = [

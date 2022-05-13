@@ -1,0 +1,1469 @@
+{
+  "contractName": "IRewards",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "rewardsSigner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "_rewardsSigner",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "tokeToken",
+      "outputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "chainId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "cycle",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "wallet",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct IRewards.Recipient",
+          "name": "recipient",
+          "type": "tuple"
+        }
+      ],
+      "name": "getClaimableAmount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "chainId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "cycle",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "wallet",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct IRewards.Recipient",
+          "name": "recipient",
+          "type": "tuple"
+        },
+        {
+          "internalType": "uint8",
+          "name": "v",
+          "type": "uint8"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "r",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "s",
+          "type": "bytes32"
+        }
+      ],
+      "name": "claim",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.4+commit.c7e474f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"chainId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"cycle\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"wallet\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"internalType\":\"struct IRewards.Recipient\",\"name\":\"recipient\",\"type\":\"tuple\"},{\"internalType\":\"uint8\",\"name\":\"v\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"r\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"s\",\"type\":\"bytes32\"}],\"name\":\"claim\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"chainId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"cycle\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"wallet\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"internalType\":\"struct IRewards.Recipient\",\"name\":\"recipient\",\"type\":\"tuple\"}],\"name\":\"getClaimableAmount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"rewardsSigner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"_rewardsSigner\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"tokeToken\",\"outputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/interfaces/IRewards.sol\":\"IRewards\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"keccak256\":\"0xbbc8ac883ac3c0078ce5ad3e288fbb3ffcc8a30c3a98c0fda0114d64fc44fca2\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://87a7a5d2f6f63f84598af02b8c50ca2df2631cb8ba2453e8d95fcb17e4be9824\",\"dweb:/ipfs/QmR76hqtAcRqoFj33tmNjcWTLrgNsAaakYwnKZ8zoJtKei\"]},\"project:/contracts/interfaces/IRewards.sol\":{\"keccak256\":\"0xeaa0513a06d688b9ce47030bafb10a6ec44f170264c163014b504ff9e260cb0c\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://28413733953b9317c3044f512221d7d0a45a1062b49c9ce57256f75199d5b451\",\"dweb:/ipfs/QmdbajvwmU82r6iVYD1oDH7L1hSs2W7AAxEnVgCHLXfxLg\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: MIT\n\npragma solidity 0.8.4;\npragma experimental ABIEncoderV2;\nimport \"@openzeppelin/contracts/token/ERC20/IERC20.sol\";\n\ninterface IRewards {\n    // function claimedAmounts(address _account) external returns (uint256);\n\n    struct EIP712Domain {\n        string name;\n        string version;\n        uint256 chainId;\n        address verifyingContract;\n    }\n\n    struct Recipient {\n        uint256 chainId;\n        uint256 cycle;\n        address wallet;\n        uint256 amount;\n    }\n\n    function rewardsSigner() external returns (address _rewardsSigner);\n\n    function tokeToken() external returns (IERC20);\n\n    function getClaimableAmount(Recipient calldata recipient)\n        external\n        returns (uint256);\n\n    function claim(\n        Recipient calldata recipient,\n        uint8 v,\n        bytes32 r,\n        bytes32 s // bytes calldata signature\n    ) external;\n}\n",
+  "sourcePath": "/Users/danielguerrero/workspace/ondo.finance/solidity-coding-challenge-eqjvpy/contracts/interfaces/IRewards.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/interfaces/IRewards.sol",
+    "exportedSymbols": {
+      "IERC20": [
+        2088
+      ],
+      "IRewards": [
+        12763
+      ]
+    },
+    "id": 12764,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 12711,
+        "literals": [
+          "solidity",
+          "0.8",
+          ".4"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "33:22:23"
+      },
+      {
+        "id": 12712,
+        "literals": [
+          "experimental",
+          "ABIEncoderV2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "56:33:23"
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "file": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "id": 12713,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 12764,
+        "sourceUnit": 2089,
+        "src": "90:56:23",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 12763,
+        "linearizedBaseContracts": [
+          12763
+        ],
+        "name": "IRewards",
+        "nameLocation": "158:8:23",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "IRewards.EIP712Domain",
+            "id": 12722,
+            "members": [
+              {
+                "constant": false,
+                "id": 12715,
+                "mutability": "mutable",
+                "name": "name",
+                "nameLocation": "288:4:23",
+                "nodeType": "VariableDeclaration",
+                "scope": 12722,
+                "src": "281:11:23",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 12714,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "281:6:23",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 12717,
+                "mutability": "mutable",
+                "name": "version",
+                "nameLocation": "309:7:23",
+                "nodeType": "VariableDeclaration",
+                "scope": 12722,
+                "src": "302:14:23",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 12716,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "302:6:23",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 12719,
+                "mutability": "mutable",
+                "name": "chainId",
+                "nameLocation": "334:7:23",
+                "nodeType": "VariableDeclaration",
+                "scope": 12722,
+                "src": "326:15:23",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 12718,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "326:7:23",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 12721,
+                "mutability": "mutable",
+                "name": "verifyingContract",
+                "nameLocation": "359:17:23",
+                "nodeType": "VariableDeclaration",
+                "scope": 12722,
+                "src": "351:25:23",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 12720,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "351:7:23",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "EIP712Domain",
+            "nameLocation": "258:12:23",
+            "nodeType": "StructDefinition",
+            "scope": 12763,
+            "src": "251:132:23",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "IRewards.Recipient",
+            "id": 12731,
+            "members": [
+              {
+                "constant": false,
+                "id": 12724,
+                "mutability": "mutable",
+                "name": "chainId",
+                "nameLocation": "424:7:23",
+                "nodeType": "VariableDeclaration",
+                "scope": 12731,
+                "src": "416:15:23",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 12723,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "416:7:23",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 12726,
+                "mutability": "mutable",
+                "name": "cycle",
+                "nameLocation": "449:5:23",
+                "nodeType": "VariableDeclaration",
+                "scope": 12731,
+                "src": "441:13:23",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 12725,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "441:7:23",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 12728,
+                "mutability": "mutable",
+                "name": "wallet",
+                "nameLocation": "472:6:23",
+                "nodeType": "VariableDeclaration",
+                "scope": 12731,
+                "src": "464:14:23",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 12727,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "464:7:23",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 12730,
+                "mutability": "mutable",
+                "name": "amount",
+                "nameLocation": "496:6:23",
+                "nodeType": "VariableDeclaration",
+                "scope": 12731,
+                "src": "488:14:23",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 12729,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "488:7:23",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "Recipient",
+            "nameLocation": "396:9:23",
+            "nodeType": "StructDefinition",
+            "scope": 12763,
+            "src": "389:120:23",
+            "visibility": "public"
+          },
+          {
+            "functionSelector": "efd5d265",
+            "id": 12736,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "rewardsSigner",
+            "nameLocation": "524:13:23",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 12732,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "537:2:23"
+            },
+            "returnParameters": {
+              "id": 12735,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12734,
+                  "mutability": "mutable",
+                  "name": "_rewardsSigner",
+                  "nameLocation": "566:14:23",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12736,
+                  "src": "558:22:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 12733,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "558:7:23",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "557:24:23"
+            },
+            "scope": 12763,
+            "src": "515:67:23",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "4e67b54b",
+            "id": 12742,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "tokeToken",
+            "nameLocation": "597:9:23",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 12737,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "606:2:23"
+            },
+            "returnParameters": {
+              "id": 12741,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12740,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12742,
+                  "src": "627:6:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IERC20_$2088",
+                    "typeString": "contract IERC20"
+                  },
+                  "typeName": {
+                    "id": 12739,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 12738,
+                      "name": "IERC20",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 2088,
+                      "src": "627:6:23"
+                    },
+                    "referencedDeclaration": 2088,
+                    "src": "627:6:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IERC20_$2088",
+                      "typeString": "contract IERC20"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "626:8:23"
+            },
+            "scope": 12763,
+            "src": "588:47:23",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "a68d49e9",
+            "id": 12750,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getClaimableAmount",
+            "nameLocation": "650:18:23",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 12746,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12745,
+                  "mutability": "mutable",
+                  "name": "recipient",
+                  "nameLocation": "688:9:23",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12750,
+                  "src": "669:28:23",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Recipient_$12731_calldata_ptr",
+                    "typeString": "struct IRewards.Recipient"
+                  },
+                  "typeName": {
+                    "id": 12744,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 12743,
+                      "name": "Recipient",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 12731,
+                      "src": "669:9:23"
+                    },
+                    "referencedDeclaration": 12731,
+                    "src": "669:9:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Recipient_$12731_storage_ptr",
+                      "typeString": "struct IRewards.Recipient"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "668:30:23"
+            },
+            "returnParameters": {
+              "id": 12749,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12748,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12750,
+                  "src": "733:7:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 12747,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "733:7:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "732:9:23"
+            },
+            "scope": 12763,
+            "src": "641:101:23",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "e1fc8691",
+            "id": 12762,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "claim",
+            "nameLocation": "757:5:23",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 12760,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12753,
+                  "mutability": "mutable",
+                  "name": "recipient",
+                  "nameLocation": "791:9:23",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12762,
+                  "src": "772:28:23",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Recipient_$12731_calldata_ptr",
+                    "typeString": "struct IRewards.Recipient"
+                  },
+                  "typeName": {
+                    "id": 12752,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 12751,
+                      "name": "Recipient",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 12731,
+                      "src": "772:9:23"
+                    },
+                    "referencedDeclaration": 12731,
+                    "src": "772:9:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Recipient_$12731_storage_ptr",
+                      "typeString": "struct IRewards.Recipient"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 12755,
+                  "mutability": "mutable",
+                  "name": "v",
+                  "nameLocation": "816:1:23",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12762,
+                  "src": "810:7:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 12754,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "810:5:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 12757,
+                  "mutability": "mutable",
+                  "name": "r",
+                  "nameLocation": "835:1:23",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12762,
+                  "src": "827:9:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 12756,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "827:7:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 12759,
+                  "mutability": "mutable",
+                  "name": "s",
+                  "nameLocation": "854:1:23",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12762,
+                  "src": "846:9:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 12758,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "846:7:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "762:127:23"
+            },
+            "returnParameters": {
+              "id": 12761,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "898:0:23"
+            },
+            "scope": 12763,
+            "src": "748:151:23",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 12764,
+        "src": "148:753:23",
+        "usedErrors": []
+      }
+    ],
+    "src": "33:869:23"
+  },
+  "legacyAST": {
+    "absolutePath": "project:/contracts/interfaces/IRewards.sol",
+    "exportedSymbols": {
+      "IERC20": [
+        2088
+      ],
+      "IRewards": [
+        12763
+      ]
+    },
+    "id": 12764,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 12711,
+        "literals": [
+          "solidity",
+          "0.8",
+          ".4"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "33:22:23"
+      },
+      {
+        "id": 12712,
+        "literals": [
+          "experimental",
+          "ABIEncoderV2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "56:33:23"
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "file": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "id": 12713,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 12764,
+        "sourceUnit": 2089,
+        "src": "90:56:23",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 12763,
+        "linearizedBaseContracts": [
+          12763
+        ],
+        "name": "IRewards",
+        "nameLocation": "158:8:23",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "IRewards.EIP712Domain",
+            "id": 12722,
+            "members": [
+              {
+                "constant": false,
+                "id": 12715,
+                "mutability": "mutable",
+                "name": "name",
+                "nameLocation": "288:4:23",
+                "nodeType": "VariableDeclaration",
+                "scope": 12722,
+                "src": "281:11:23",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 12714,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "281:6:23",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 12717,
+                "mutability": "mutable",
+                "name": "version",
+                "nameLocation": "309:7:23",
+                "nodeType": "VariableDeclaration",
+                "scope": 12722,
+                "src": "302:14:23",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 12716,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "302:6:23",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 12719,
+                "mutability": "mutable",
+                "name": "chainId",
+                "nameLocation": "334:7:23",
+                "nodeType": "VariableDeclaration",
+                "scope": 12722,
+                "src": "326:15:23",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 12718,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "326:7:23",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 12721,
+                "mutability": "mutable",
+                "name": "verifyingContract",
+                "nameLocation": "359:17:23",
+                "nodeType": "VariableDeclaration",
+                "scope": 12722,
+                "src": "351:25:23",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 12720,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "351:7:23",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "EIP712Domain",
+            "nameLocation": "258:12:23",
+            "nodeType": "StructDefinition",
+            "scope": 12763,
+            "src": "251:132:23",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "IRewards.Recipient",
+            "id": 12731,
+            "members": [
+              {
+                "constant": false,
+                "id": 12724,
+                "mutability": "mutable",
+                "name": "chainId",
+                "nameLocation": "424:7:23",
+                "nodeType": "VariableDeclaration",
+                "scope": 12731,
+                "src": "416:15:23",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 12723,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "416:7:23",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 12726,
+                "mutability": "mutable",
+                "name": "cycle",
+                "nameLocation": "449:5:23",
+                "nodeType": "VariableDeclaration",
+                "scope": 12731,
+                "src": "441:13:23",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 12725,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "441:7:23",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 12728,
+                "mutability": "mutable",
+                "name": "wallet",
+                "nameLocation": "472:6:23",
+                "nodeType": "VariableDeclaration",
+                "scope": 12731,
+                "src": "464:14:23",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 12727,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "464:7:23",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 12730,
+                "mutability": "mutable",
+                "name": "amount",
+                "nameLocation": "496:6:23",
+                "nodeType": "VariableDeclaration",
+                "scope": 12731,
+                "src": "488:14:23",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 12729,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "488:7:23",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "Recipient",
+            "nameLocation": "396:9:23",
+            "nodeType": "StructDefinition",
+            "scope": 12763,
+            "src": "389:120:23",
+            "visibility": "public"
+          },
+          {
+            "functionSelector": "efd5d265",
+            "id": 12736,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "rewardsSigner",
+            "nameLocation": "524:13:23",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 12732,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "537:2:23"
+            },
+            "returnParameters": {
+              "id": 12735,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12734,
+                  "mutability": "mutable",
+                  "name": "_rewardsSigner",
+                  "nameLocation": "566:14:23",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12736,
+                  "src": "558:22:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 12733,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "558:7:23",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "557:24:23"
+            },
+            "scope": 12763,
+            "src": "515:67:23",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "4e67b54b",
+            "id": 12742,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "tokeToken",
+            "nameLocation": "597:9:23",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 12737,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "606:2:23"
+            },
+            "returnParameters": {
+              "id": 12741,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12740,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12742,
+                  "src": "627:6:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IERC20_$2088",
+                    "typeString": "contract IERC20"
+                  },
+                  "typeName": {
+                    "id": 12739,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 12738,
+                      "name": "IERC20",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 2088,
+                      "src": "627:6:23"
+                    },
+                    "referencedDeclaration": 2088,
+                    "src": "627:6:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IERC20_$2088",
+                      "typeString": "contract IERC20"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "626:8:23"
+            },
+            "scope": 12763,
+            "src": "588:47:23",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "a68d49e9",
+            "id": 12750,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getClaimableAmount",
+            "nameLocation": "650:18:23",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 12746,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12745,
+                  "mutability": "mutable",
+                  "name": "recipient",
+                  "nameLocation": "688:9:23",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12750,
+                  "src": "669:28:23",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Recipient_$12731_calldata_ptr",
+                    "typeString": "struct IRewards.Recipient"
+                  },
+                  "typeName": {
+                    "id": 12744,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 12743,
+                      "name": "Recipient",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 12731,
+                      "src": "669:9:23"
+                    },
+                    "referencedDeclaration": 12731,
+                    "src": "669:9:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Recipient_$12731_storage_ptr",
+                      "typeString": "struct IRewards.Recipient"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "668:30:23"
+            },
+            "returnParameters": {
+              "id": 12749,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12748,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12750,
+                  "src": "733:7:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 12747,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "733:7:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "732:9:23"
+            },
+            "scope": 12763,
+            "src": "641:101:23",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "e1fc8691",
+            "id": 12762,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "claim",
+            "nameLocation": "757:5:23",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 12760,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12753,
+                  "mutability": "mutable",
+                  "name": "recipient",
+                  "nameLocation": "791:9:23",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12762,
+                  "src": "772:28:23",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Recipient_$12731_calldata_ptr",
+                    "typeString": "struct IRewards.Recipient"
+                  },
+                  "typeName": {
+                    "id": 12752,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 12751,
+                      "name": "Recipient",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 12731,
+                      "src": "772:9:23"
+                    },
+                    "referencedDeclaration": 12731,
+                    "src": "772:9:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Recipient_$12731_storage_ptr",
+                      "typeString": "struct IRewards.Recipient"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 12755,
+                  "mutability": "mutable",
+                  "name": "v",
+                  "nameLocation": "816:1:23",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12762,
+                  "src": "810:7:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 12754,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "810:5:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 12757,
+                  "mutability": "mutable",
+                  "name": "r",
+                  "nameLocation": "835:1:23",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12762,
+                  "src": "827:9:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 12756,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "827:7:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 12759,
+                  "mutability": "mutable",
+                  "name": "s",
+                  "nameLocation": "854:1:23",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12762,
+                  "src": "846:9:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 12758,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "846:7:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "762:127:23"
+            },
+            "returnParameters": {
+              "id": 12761,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "898:0:23"
+            },
+            "scope": 12763,
+            "src": "748:151:23",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 12764,
+        "src": "148:753:23",
+        "usedErrors": []
+      }
+    ],
+    "src": "33:869:23"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.4+commit.c7e474f2.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2022-04-12T16:43:38.849Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}
