@@ -37,7 +37,11 @@ interface IManager {
     event PoolUnregistered(address pool);
     event CycleDurationSet(uint256 duration);
     event LiquidityMovedToManager(address pool, uint256 amount);
-    event DeploymentStepExecuted(bytes32 controller, address adapaterAddress, bytes data);
+    event DeploymentStepExecuted(
+        bytes32 controller,
+        address adapaterAddress,
+        bytes data
+    );
     event LiquidityMovedToPool(address pool, uint256 amount);
     event CycleRolloverStarted(uint256 timestamp);
     event CycleRolloverComplete(uint256 timestamp);
@@ -92,7 +96,10 @@ interface IManager {
     ///@notice Gets reward hash by cycle index
     ///@param index Cycle index to retrieve rewards hash
     ///@return String memory hash
-    function cycleRewardsHashes(uint256 index) external view returns (string memory);
+    function cycleRewardsHashes(uint256 index)
+        external
+        view
+        returns (string memory);
 
     ///@notice Gets current starting block
     ///@return uint256 with block number

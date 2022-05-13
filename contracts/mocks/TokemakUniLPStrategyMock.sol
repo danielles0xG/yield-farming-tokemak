@@ -79,7 +79,6 @@ contract TokemakUniLPStrategyMock is OwnableUpgradeable, IRewards {
         uniV2LpTokensPairs.transferFrom(_msgSender(), address(this), _amount);
 
         if (uniV2LpTokensPairs.balanceOf(address(this)) >= _amount) {
-
             emit Deposit(_msgSender(), _amount);
             stakes = _amount;
         } else {
@@ -279,7 +278,7 @@ contract TokemakUniLPStrategyMock is OwnableUpgradeable, IRewards {
         emit RequestWithdraw(_msgSender(), _amount);
     }
 
-    function currentCycle() external view returns(uint256 _cycle){
+    function currentCycle() external view returns (uint256 _cycle) {
         _cycle = tokemakManagerContract.getCurrentCycle();
     }
 

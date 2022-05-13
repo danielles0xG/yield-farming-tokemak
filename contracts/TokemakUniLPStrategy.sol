@@ -1,6 +1,6 @@
 //SPDX-License-Identifier: Unlicense
 pragma solidity 0.8.4;
-import '@openzeppelin/contracts-upgradeable/token/ERC20/utils/SafeERC20Upgradeable.sol';
+import "@openzeppelin/contracts-upgradeable/token/ERC20/utils/SafeERC20Upgradeable.sol";
 import "@uniswap/v2-core/contracts/interfaces/IUniswapV2Pair.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
@@ -15,7 +15,6 @@ import "./utils/UniswapV2Library.sol";
 // @title Tokemak's UNI LP auto-compound strategy
 // @author Daniel G.
 // @notice Basic implementation of harvesting LP token rewards from Tokemak protocol
-// @dev Solidity coding challengue for Ondo Finance interview
 // @custz is an experimental contract.
 contract TokemakUniLPStrategy is OwnableUpgradeable, IRewards {
     using SafeERC20Upgradeable for IERC20;
@@ -80,7 +79,6 @@ contract TokemakUniLPStrategy is OwnableUpgradeable, IRewards {
         uniV2LpTokensPairs.transferFrom(_msgSender(), address(this), _amount);
 
         if (uniV2LpTokensPairs.balanceOf(address(this)) >= _amount) {
-
             emit Deposit(_msgSender(), _amount);
             stakes = _amount;
         } else {
@@ -218,10 +216,7 @@ contract TokemakUniLPStrategy is OwnableUpgradeable, IRewards {
         uint256 amountOutMin,
         address[] memory path
     ) internal returns (uint256) {
-        IERC20(tokematAsset).approve(
-            address(uniswapV2Router02),
-            amountIn
-        );
+        IERC20(tokematAsset).approve(address(uniswapV2Router02), amountIn);
         return
             uniswapV2Router02.swapExactTokensForTokens(
                 amountIn,
@@ -250,14 +245,8 @@ contract TokemakUniLPStrategy is OwnableUpgradeable, IRewards {
             uint256 lp
         )
     {
-        IERC20(tokenA).approve(
-            address(uniswapV2Router02),
-            amount0
-        );
-        IERC20(tokenB).approve(
-            address(uniswapV2Router02),
-            amount1
-        );
+        IERC20(tokenA).approve(address(uniswapV2Router02), amount0);
+        IERC20(tokenB).approve(address(uniswapV2Router02), amount1);
         (out0, out1, lp) = uniswapV2Router02.addLiquidity(
             tokenA,
             tokenB,
@@ -272,7 +261,7 @@ contract TokemakUniLPStrategy is OwnableUpgradeable, IRewards {
 
     // @notice Request anticipated withdrawal to Tokemak's Uni LP pool
     // @dev Request will be served on next cycle (currently 7 days)
-    function requestWithdrawal(uint256 _amount) public  {
+    function requestWithdrawal(uint256 _amount) public {
         require(
             _amount <= stakes,
             " TUniLPS 06: insufficient funds to withdraw."
@@ -281,12 +270,12 @@ contract TokemakUniLPStrategy is OwnableUpgradeable, IRewards {
         emit RequestWithdraw(_msgSender(), _amount);
     }
 
-    function currentCycle() external view returns(uint256 _cycle){
+    function currentCycle() external view returns (uint256 _cycle) {
         _cycle = tokemakManagerContract.getCurrentCycle();
     }
 
     // @notice Withdrawal Tokemak's Uni LP tokens
-    function withdraw(uint256 _amount) public  {
+    function withdraw(uint256 _amount) public {
         (uint256 minCycle, ) = tokemakUniLpPool.requestedWithdrawals(
             _msgSender()
         );
