@@ -38,11 +38,14 @@ module.exports = {
   },
   networks: {
     localhost: { url: "http://127.0.0.1:8545" },
+    matic: {
+      url: `https://twilight-icy-log.matic.quiknode.pro/${process.env.QUICK_NODE_KEY}`,
+      accounts: [process.env.PRIVATE_KEY],
+    },
     "mainnet-fork": {
       url: "http://127.0.0.1:8545",
       accounts:
       [
-        '0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80',
          process.env.TEST_ETH_ACCOUNT_PRIVATE_KEY
     ],
 
